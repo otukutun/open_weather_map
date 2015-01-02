@@ -15,6 +15,19 @@ module OpenWeatherMap
       @response['main']['temp_max']
     end
 
+    def cond_jp
+      jp_cond = ''
+      case @response['weather'][0]['main']
+      when 'Clear' then jp_cond = '晴れ'
+      when 'Clouds' then jp_cond = '曇り'
+      when 'Snow' then jp_cond = '雪'
+      when 'Rain' then jp_cond = '雨'
+      else jp_cond = 'その他'
+      end
+
+      return jp_cond
+    end
+
     def temp_min_celsius
       to_celsius @response['main']['temp_min']
     end
